@@ -122,7 +122,10 @@ def poll_and_deploy(wait_minutes: int) -> None:
             if deployment_status == "UNDEPLOYED":
                 if deployment.get("error"):
                     raise nugen.NugenError("Nugen deployment failed; inspect the provider's deployment status for the reason.")
-                nugen._request("POST", f"/api/v3/models/{model_id}/deployment")
+                if state.get("deployment_requested_for_model") != model_id:
+                    nugen._request("POST", f"/api/v3/models/{model_id}/deployment")
+                    state["deployment_requested_for_model"] = model_id
+                    save_state(state)
             set_local_model_id(str(model_id))
             state["model_id"] = model_id
             save_state(state)

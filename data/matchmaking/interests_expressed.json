@@ -1,0 +1,16 @@
+[
+  {
+    "from_user_id": "user_001",
+    "to_user_id": "user_002",
+    "place_id": "sw_10010",
+    "timestamp": "2026-09-26T14:57:22.842067",
+    "status": "matched"
+  },
+  {
+    "from_user_id": "user_002",
+    "to_user_id": "user_001",
+    "place_id": "sw_10010",
+    "timestamp": "2026-09-26T14:57:30.828017",
+    "status": "matched"
+  }
+]

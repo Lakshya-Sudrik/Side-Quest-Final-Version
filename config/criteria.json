@@ -1,0 +1,400 @@
+{
+  "version": 1,
+  "comment": "Single source of truth for labels, model types, decision thresholds and pass/fail gates. Training, serving and tests must all read this file. No metric may be reported unless it is produced against a gate defined here.",
+  "random_state": 42,
+  "split": {
+    "test_size": 0.25,
+    "val_fraction_of_train": 0.2,
+    "cv_folds": 5,
+    "notes": "The outer train/test split is fixed BEFORE any label constant is fit, grouped by ncrb_group so a district never sits on both sides; every cross-row label constant, median and quantile is estimated from TRAIN ONLY. Within the train pool the fit/validation split is stratified (class label for classification, quantile bins of the target for regression, grouped for safety)."
+  },
+  "tasks": {
+    "hidden_gem": {
+      "type": "regression",
+      "model_type": "xgboost",
+      "label_source": "review_quality_blend_shrunk",
+      "label_provenance": "independent",
+      "label_definition": "gem_quality = 100 * pct_rank_within_city( w*z(detail_rate) + (1-w)*z(review_star_mean) ), detail_rate = (n_detailed_positive + k*prior)/(n_reviews + k) with detailed positive = >=40 words and >=4 stars; review_star_mean = (sum of per-review stars + k*prior)/(n_reviews + k). Priors, z stats and percentile references are fitted on the TRAIN fold. k and w were chosen by 5-fold grouped cross-validation on the training fold only (k=20, w=0.3). Exposure (review volume) is NOT in the label; it is applied at serving time via gem_rule.",
+      "label_constants": {
+        "min_reviews": 1,
+        "shrinkage_k": 20,
+        "w_detail": 0.3,
+        "detailed_review_min_words": 40,
+        "positive_rating_min": 4.0
+      },
+      "label_input_columns": [
+        "detailed_positive_rate",
+        "n_detailed_positive",
+        "n_reviews",
+        "sum_review_stars",
+        "n_starred"
+      ],
+      "features_excluded_from_X": [
+        "review_count",
+        "review_ratio_vs_city",
+        "is_mainstream",
+        "is_tourist_trap",
+        "rating_vs_city",
+        "city_avg_reviews",
+        "is_sweet_spot",
+        "has_reviews",
+        "is_open",
+        "city_avg_rating",
+        "city_business_count",
+        "exposure_pct",
+        "competitor_density"
+      ],
+      "gem_rule": {
+        "definition": "is_hidden_gem = predicted gem_quality >= quality_min AND exposure_pct <= max_exposure_pct (exposure_pct = percentile of the place's review count within its city, observed not predicted)",
+        "quality_min": 60.0,
+        "max_exposure_pct": 0.5
+      },
+      "decision_threshold": {
+        "operator": ">=",
+        "value": 60.0,
+        "scale": "0-100"
+      },
+      "gates": {
+        "r2_min": 0.12,
+        "r2_gap_max": 0.05,
+        "r2_baseline_margin": 0.1,
+        "shuffle_r2_max": 0.01,
+        "leakage_assert": true
+      },
+      "feature_note": "review_count_log (votes) is allowed: the label no longer contains exposure. Duplicate / constant columns are excluded (competitor_density == area_business_count; city_* are constant for the single labelled city; review_count kept only as its log).",
+      "model_params": {
+        "max_depth": 3,
+        "min_child_weight": 120,
+        "n_estimators": 3000,
+        "learning_rate": 0.02
+      },
+      "dedupe": "one row per (source, name, address) before splitting - Zomato repeats each restaurant ~4.4x with identical reviews",
+      "model_type_previous": "ebm"
+    },
+    "hidden_gem_class": {
+      "type": "classification",
+      "model_type": "xgboost",
+      "label_source": "review_quality_shrunk_thresholded",
+      "label_provenance": "independent",
+      "label_definition": "high_quality = 1 if gem_quality >= 80 (top ~20% of the city), else 0. Same features, same restaurant-level split and same label constants as hidden_gem.",
+      "label_constants": {
+        "threshold": 80.0
+      },
+      "label_input_columns": [
+        "hidden_gem_score"
+      ],
+      "features_excluded_from_X": [
+        "review_count",
+        "review_ratio_vs_city",
+        "is_mainstream",
+        "is_tourist_trap",
+        "rating_vs_city",
+        "city_avg_reviews",
+        "is_sweet_spot",
+        "has_reviews",
+        "is_open",
+        "city_avg_rating",
+        "city_business_count",
+        "exposure_pct",
+        "competitor_density",
+        "hidden_gem_score"
+      ],
+      "positive_class": "high_quality",
+      "positive_class_value": 1,
+      "imbalance": {
+        "strategy": "scale_pos_weight",
+        "value_source": "n_majority / n_minority"
+      },
+      "decision_threshold": {
+        "operator": ">=",
+        "value": 0.5,
+        "tune_on_validation": true,
+        "optimise_for": "macro_f1"
+      },
+      "gates": {
+        "macro_f1_min": 0.6,
+        "minority_recall_min": 0.35,
+        "pr_auc_min_over_prevalence": 1.8,
+        "balanced_accuracy_min": 0.6,
+        "label_shuffle_macro_f1_max_over_baseline": 0.15,
+        "leakage_assert": true
+      },
+      "model_params": {
+        "max_depth": 3,
+        "min_child_weight": 120,
+        "n_estimators": 3000,
+        "learning_rate": 0.02
+      },
+      "gate_notes": {
+        "pr_auc_min_over_prevalence": "lift gate re-scaled for ~20% prevalence: the maximum possible lift is 1/0.20 = 5, so the old x6 gate (set for a 2.4% positive rate) is unreachable by definition"
+      },
+      "model_type_previous": "ebm"
+    },
+    "safety_score": {
+      "type": "index",
+      "model_type": "rule_based",
+      "label_provenance": "not_learned",
+      "definition": "NOT a trained model. safety = weighted mean of the AVAILABLE components: crime = 100*(1 - national percentile of the district's NCRB crime level; violent 45%, crimes against women 35%, property 20%), police = 100*exp(-km_to_nearest_police/2), hospital = 100*exp(-km_to_nearest_hospital/3). Place -> district by point-in-polygon on data/safety/districts.geojson. Missing components are dropped and reported; with no components the score is unknown (null), never a default. See src/safety_index.py.",
+      "why_not_regression": "The previous regression target was our own formula over district crime rates. With the rates in X the model memorised the formula (R2 0.9999, meaningless); with them removed, place features carry no district-crime signal and R2 collapsed. A published reference table plus distances needs no learning.",
+      "decision_threshold": {
+        "operator": ">=",
+        "value": 50.0,
+        "scale": "0-100"
+      }
+    },
+    "collaboration_auth": {
+      "type": "classification",
+      "model_type": "ebm",
+      "label_source": "fake_review_fraction",
+      "label_provenance": "weak_distilled",
+      "label_definition": "is_authentic = 1 if the place's fake-review fraction (from the independent text model) < 0.15. Features are metadata + review-set statistics only, so the text verdict never enters X. PROVENANCE WARNING: this label is a distillation of fake_detection, so its accuracy is bounded by that model and must be cross-checked against the hand-labelled holdout in data/holdout/.",
+      "label_constants": {
+        "fake_fraction_threshold": 0.15
+      },
+      "label_input_columns": [
+        "fraud_rate"
+      ],
+      "features_excluded_from_X": [
+        "fraud_rate",
+        "p_fake",
+        "is_fake"
+      ],
+      "positive_class": "suspicious",
+      "positive_class_value": 0,
+      "imbalance": {
+        "strategy": "scale_pos_weight",
+        "value_source": "n_majority / n_minority"
+      },
+      "decision_threshold": {
+        "operator": ">=",
+        "value": 0.5,
+        "tune_on_validation": true,
+        "optimise_for": "macro_f1"
+      },
+      "gates": {
+        "macro_f1_min": 0.6,
+        "minority_recall_min": 0.35,
+        "pr_auc_min_over_prevalence": 6.0,
+        "balanced_accuracy_min": 0.6,
+        "label_shuffle_macro_f1_max_over_baseline": 0.15,
+        "leakage_assert": true
+      }
+    },
+    "fake_detection": {
+      "type": "classification",
+      "model_type": "xgboost_text",
+      "label_source": "kaggle_cg_or_labels",
+      "label_provenance": "independent",
+      "label_definition": "Kaggle 'fake reviews dataset.csv': CG (computer-generated) = fake = 1, OR (original) = real = 0. Genuinely independent of every feature.",
+      "label_constants": {},
+      "label_input_columns": [
+        "label"
+      ],
+      "features_excluded_from_X": [
+        "label"
+      ],
+      "positive_class": "fake",
+      "positive_class_value": 1,
+      "imbalance": {
+        "strategy": "class_weight_balanced",
+        "over_sample_train_fold_only": true
+      },
+      "decision_threshold": {
+        "operator": ">=",
+        "value": 0.5,
+        "tune_on_validation": true,
+        "optimise_for": "macro_f1"
+      },
+      "gates": {
+        "macro_f1_min": 0.8,
+        "positive_recall_min": 0.75,
+        "average_precision_min": 0.5,
+        "balanced_accuracy_min": 0.7,
+        "leakage_assert": true
+      }
+    },
+    "solo_matching": {
+      "type": "classification",
+      "model_type": "xgboost",
+      "label_source": "synthetic_similarity_formula",
+      "label_provenance": "synthetic",
+      "label_definition": "label_f = 0.55*clip(cos,0,1) + 0.20*interest_jaccard + 0.15*values + 0.10*same_city - 0.15*age_penalty, min-max normalised, positive at >= 0.62. WARNING: the label is a formula over features the model sees, so only an ABLATED evaluation counts as evidence of learning.",
+      "label_constants": {
+        "positive_threshold": 0.62
+      },
+      "positive_class": "match",
+      "positive_class_value": 1,
+      "label_input_columns": [
+        "essay_cosine",
+        "same_diet",
+        "same_drinks",
+        "same_smokes",
+        "same_education",
+        "same_religion",
+        "same_city",
+        "age_diff"
+      ],
+      "features_excluded_from_X": [
+        "essay_cosine",
+        "same_diet",
+        "same_drinks",
+        "same_smokes",
+        "same_education",
+        "same_religion",
+        "same_city",
+        "age_diff"
+      ],
+      "ablation_required": true,
+      "decision_threshold": {
+        "operator": ">=",
+        "value": 0.5
+      },
+      "gates": {
+        "accuracy_min": 0.8,
+        "score_r2_min": 0.6,
+        "accuracy_gap_max": 0.05,
+        "score_r2_gap_max": 0.08,
+        "ablated_accuracy_min": 0.7,
+        "leakage_assert": true
+      }
+    },
+    "gem_quality_india": {
+      "type": "regression",
+      "model_type": "lightgbm",
+      "trained_by": "src/india_quality.py",
+      "label_provenance": "independent",
+      "label_source": "rating_shrunk_pct_within_source_city",
+      "description": "India-wide place quality (528 cities, Swiggy + Zomato). Label = own rating shrunk toward the (source, city) average, percentile within (source, city). The place's own rating and rating count are never features.",
+      "features_excluded_from_X": [
+        "stars",
+        "review_count",
+        "review_count_log",
+        "rating_vs_city",
+        "city_avg_rating",
+        "hidden_gem_score"
+      ],
+      "gates": {
+        "r2_min": 0.15,
+        "r2_gap_max": 0.05,
+        "shuffle_r2_max": 0.01,
+        "r2_baseline_margin": 0.1
+      }
+    },
+    "attractions_gem": {
+      "type": "regression",
+      "model_type": "lightgbm + tfidf ridge (out-of-fold)",
+      "trained_by": "src/attractions_model.py",
+      "label_provenance": "independent",
+      "label_source": "average rating of a random held-out half of each place's reviews",
+      "description": "Sightseeing quality: predicts how the NEXT visitors rate a place from the other half of its reviews. Split by place name.",
+      "gates": {
+        "r2_beats_baseline": true,
+        "r2_gap_max": 0.05,
+        "shuffle_r2_max": 0.01,
+        "gem_f1_beats_baseline": true
+      }
+    }
+  },
+  "safety_index": {
+    "weights": {
+      "crime": 0.5,
+      "police": 0.25,
+      "hospital": 0.25
+    },
+    "crime_mix": {
+      "violent": 0.45,
+      "women": 0.35,
+      "property": 0.2
+    },
+    "police_decay_km": 2.0,
+    "hospital_decay_km": 3.0,
+    "nearby_radius_km": 2.0,
+    "max_infra_distance_km": 25.0,
+    "levels": {
+      "high": 70.0,
+      "moderate": 50.0
+    },
+    "data_files": [
+      "data/safety/districts.geojson",
+      "data/safety/district_crime.csv",
+      "data/safety/police_stations.csv",
+      "data/safety/hospitals.csv"
+    ],
+    "build": "python scripts/fetch_safety_data.py"
+  },
+  "baselines": {
+    "note": "A classification gate may never sit below what a trivial predictor achieves. Regression: R^2 >= 0 beats the constant-mean predictor (r2_baseline_margin). Classification on imbalanced data gates on balanced_accuracy / macro_f1 / minority recall rather than raw accuracy, because a minority-oriented threshold always costs raw accuracy against the majority baseline. Baselines are written per task inside reports/metrics.json.",
+    "method": "computed at train time from the held-out test labels"
+  },
+  "social_verification": {
+    "purpose": "Give users MORE VALID gem options: a review-derived hidden gem is only presented as verified when it also has a real, findable public presence on social/web platforms. Purely rule-based (never fitted), so it cannot overfit.",
+    "candidate_rule": "rank all places by hidden_gem_score; candidates are those at or above the hidden_gem decision_threshold",
+    "max_candidates": 3000,
+    "providers": [
+      "google_places_api_new places:searchText -> official website",
+      "official website HTML -> instagram/youtube/facebook/x/zomato profile links"
+    ],
+    "platform_weights": {
+      "instagram": 30,
+      "youtube": 25,
+      "facebook": 15,
+      "x": 10,
+      "zomato": 20
+    },
+    "extras": {
+      "official_website": 15,
+      "multi_platform": 10
+    },
+    "multi_platform_bonus_at": 3,
+    "verified_cutoff": 60,
+    "max_score": 100,
+    "missing_data_rule": "status 'no_data' (no key / no network) or 'unchecked' is reported as unknown and is NEVER converted into a pass or a score of 0-as-failure",
+    "serving": "verified candidates are ranked first; unverified candidates are still returned, flagged social_verified=false, so option count never shrinks silently"
+  },
+  "serving": {
+    "mode": "strict",
+    "rule": "Features are looked up by place_id from data/india_places.csv + data/zomato_reviews_scored.csv. Missing required fields => HTTP-style 'insufficient_data' response; NEVER a fabricated default. Errors propagate - they are never converted into a score of 0.",
+    "required_fields_per_task": {
+      "hidden_gem": [
+        "stars",
+        "price_level",
+        "cost_inr",
+        "category_count",
+        "competitor_density",
+        "area_business_count",
+        "dist_from_center",
+        "category_rarity",
+        "city_avg_rating",
+        "city_business_count"
+      ],
+      "safety_score": [
+        "latitude",
+        "longitude"
+      ],
+      "collaboration_auth": [
+        "review_count",
+        "stars",
+        "rev_n",
+        "rev_stars_mean",
+        "rev_stars_std",
+        "rev_rating_mismatch",
+        "rev_avg_words"
+      ]
+    }
+  },
+  "reports": {
+    "canonical_metrics": "reports/metrics.json",
+    "must_include": [
+      "per_class_precision",
+      "per_class_recall",
+      "per_class_f1",
+      "macro_f1",
+      "balanced_accuracy",
+      "pr_auc",
+      "confusion_matrix",
+      "baseline",
+      "label_provenance",
+      "gate_results"
+    ]
+  }
+}

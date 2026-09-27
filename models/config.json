@@ -1,0 +1,11 @@
+{
+  "random_state": 42,
+  "test_size": 0.25,
+  "cv_folds": 5,
+  "n_estimators": 800,
+  "max_depth": 10,
+  "learning_rate": 0.03,
+  "early_stopping_rounds": 30,
+  "use_xgboost": true,
+  "use_lightgbm": false
+}

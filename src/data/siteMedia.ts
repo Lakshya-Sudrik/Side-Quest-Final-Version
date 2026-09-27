@@ -1,0 +1,26 @@
+// Change image URLs here when you have replacement photos. Local files belong in public/images/.
+export const ASSETS = {
+  logo: '/sidequest-mark.svg',
+  mapWesternGhats: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD9r4pBa3W9wXsJhJ4_foBvufslh6gVhHvxGIgKyAjSl-YycIZnaMPJK1ak4m3fPBzINgRcphPHlpZEizV77WkpuoP5LtBWJSjHxcyD2afhlsqWQJk1sS6azBXrJJxyzEQkyeq0BsdviIY706w1jilyxYjhiUFzyEMonxx8oPQBSaXy5IV612tU9weCuo48_t-0Ktrb_9GY40ymzYqqwXpGG5fq_BMJW_ULtrtRO-oKtUGjKw1XhTIXwg',
+  kaveriBamboo: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBg7Uhcws7_eUhpA5A58rORHLMqpqI6ZMFfShqgOdZaQ72r1ia2RoeXuWcwKWqofZxtBDpdNrDqfJFeg_DAGxISOei63YLUHnO7aVcuZSTS-L-Yszn2XfyvcZrEWe8poy4wHXiP3SQvc6Ak-AjGdXrYXA8WQVKPXDmz3JSBGykyaw_wic7qIgJnw00l75tyb9avolHfMoFETKlSujXcGfbAQr3yNQ7gU8vEVbmmD4GCTPikLjBTRdvoFQ',
+  mullayanagiri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBRuobHrN_Vymms_aNRI4Kva9Zw0jddHsjy-a4qgXwZJwtak1R-Bs8iUd1ZVe6YZjeR16Ou5oVJVzM129ytMVxfEjlDJm2CdcFbHlEWs1YdAwRtA8KQZpYIwKvzuS4zMv16Qp-EopowehEEz82eqdLASFmENd7Wb5vbrucV8JTLN5S0rB90j8F_k3A69xnq-6Ru8UnZ3ojTNGH6EWJKxI9nNQG8g4DBAoOQxAQjK279smWzurBeWOIl5g',
+  chorlaGhat: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBJEZuk4HWUVLJlUMABvvqCNU1coeiMeW6eWyPf7Uds2uf8T8G9T1f1Ct_1X8yUvXFzNbmsSI4UhzYq-WIatJKUWL5wJvGGTV5ohBwRYyesa7ahBwuuI2KKC-KBy2r_xJjN1Ald3h-4YgE_DCBSqofZ5f9dYzpRkm9c67ofGHuGg8DseVKHRj_f43Y-aSStQNXsIbnm41kJaxXuyKHQeGOS6SG48cz8tOadwB-iyrSRN695uAKqPJ7hBw',
+  spiceFarm: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDvRPazOhLgtEQ0T0fQJioRNqbk1XMQJOMzGSQawzrRQtoxIkrfH0ZVWGhXlU2_h32JZwomkTAqzZ2_F66_zDNGuNOoiwWVBX6Mpm8KGijeRJ_U5aIxL-Vona078SagPNzvKpktipVNI3c5zGa_qekOuNhyooDG1MAI-fucfvh_N5TxzuatIdE-abUv8KPeKvghtPiFbhXvnn5-WhnrHyhW5yoLzFgjBtsF2VttDnjBdYLJATeFCZq5iQ',
+  kadambaCarvings: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDihrBH3nQ9bo6TOeRA7OfPlcntuhqTBHYQk7PgcZ0cn9XOBev68DM7sy1uylt-4Eaf1PLo6P3dbTfapZFCtmN3TqiE-8lgvfsU6w0aeb_4UKbzHKsmg5eDNpEzerWdPM3CgAzlpyk9FdfvOJDV7k2SzPxYZXOgk9MN3OIJd8VByJQbZH4stFFc6zkzaYzOFahFBe0qlyQyl5IxJPyTJy1OCkC-prqvqkJLBlCNbVdTGA-UGa0FPK7pKg',
+  cliffsideLighthouse: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC27uOo6lb4inpJ99FGJS1gXZvunzRuP7lm9FYbER4gxC9zOH3_M5cmno4HCrz6slm-J3ipeKVXqU-O_Uu44s7JiR-yFMQp420pFsG1aLimnUZ6GNQ0tQU6k7skBDpWmuWlJjV1Ssh3pOHdO2cyFBKT4mBXDorrPimaSILv1UX2kx_c9jnV2JKvd9YaQiZ3LIpkYVgPv7jymYCOhUOaeoB1cOAYki7smKsMBDw3hAGrdhzQihzxsHH0qA',
+  sweetwaterLake: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD46hboKJPQ2RF9laOuJ3-x2a5Ee6rUV7ihyqQjl5TUdoviFhp5-LhlmF3b8GIQKC5_y4VcEk_q3Nr64u4_ddWOc5FqPtfvl_3mcnHRlfVFuk6B7MS8dPf-_1BJV5nWsThrwSXvSII4_vZTp4Lbo2WCD3PmQTqbVfws_gB-XgADkH_qigU2PChNJFtj1epuodcFeTvm-VWXEU0Yk2JkzHDWvrteWgP_osPQSaceMIqs1yqBkhCarMRD7w',
+  casaDosPassarinhos: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCJrQM5wiYV9rH4o36cYqMlqfpTZMy-4fSAqDHBdgnT0hFdPZuvAQ7OYWuI_5sVDErCoeSVFNaFylYRnB7tgQ-hpCZkeXlorjYS-77gE7lE2_bABj7jXsND-wHZRxaYDJOPk77gNp8IMvF7auJm158B8EzjRPCtnRigVyohf2vFbrDf_jd6-EbTQ9KupD8BrH6oWaFZDbrP7l99R9I0M90WkaM22y0FcGZ01seSgI7XoDHvb9xxuHIgw',
+  netravaliFall: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDg32qFnGGZurXHPzKHR-FzQPXdWvMhhsOfqL_EPQ1cR4mYhfymOvp-hCtLVuGaYVaeBA3PBpMkSPGGpqgdj91zSppMU1Ye9ASeWUDixTpW3LkU4DXRVNkOge7jD3Cjb90yUWQuE4KlB6cR-pXgbhtX5h275fqgnJqNH8HwV-4-cDOm9riAL_vOCVgfQZTzjEo2Cc3Se7qgusM0xfEQYPiGbfX7iKAr7ZmETjaC3Ftri3NlQBQlB7ni1Q',
+};
+
+// Swap these values to replace the footage or photos used on the landing page.
+// Local image files can live in public/images/; keep every image reference here.
+export const HOME_REEL = '/videos/sidequest-reel.mp4';
+export const HOME_REEL_POSTER = '/images/sidequest-reel-poster.jpg';
+
+export const LANDING_MEDIA = {
+  hiddenGems: '/images/sidequest-gems.jpg',
+  routes: '/images/sidequest-route.jpg',
+  travelers: '/images/sidequest-travelers.jpg',
+  locals: '/images/sidequest-locals.jpg',
+};

@@ -1,0 +1,137 @@
+{
+  "name": "SideQuest - Hidden Gems Discovery",
+  "short_name": "SideQuest",
+  "description": "Discover hidden local gems, match with solo travelers, and explore authentic experiences",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#e94560",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "local", "social"],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Home page on desktop"
+    },
+    {
+      "src": "/screenshots/mobile.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Home page on mobile"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Discover Hidden Gems",
+      "short_name": "Discover",
+      "description": "Find hidden gems near you",
+      "url": "/discover",
+      "icons": [
+        {
+          "src": "/icons/discover.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Find Solo Travelers",
+      "short_name": "Solo",
+      "description": "Connect with other solo travelers",
+      "url": "/solo-match",
+      "icons": [
+        {
+          "src": "/icons/solo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Safety Info",
+      "short_name": "Safety",
+      "description": "Check safety information",
+      "url": "/safety",
+      "icons": [
+        {
+          "src": "/icons/safety.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "background_fetch": {
+    "enabled": true,
+    "default_minimum_interval": 60
+  },
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "files": [
+        {
+          "name": "photos",
+          "accept": ["image/*"]
+        }
+      ],
+      "title": "name",
+      "text": "description"
+    }
+  }
+}

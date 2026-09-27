@@ -1,0 +1,44 @@
+{
+  "name": "SideQuest — Hidden Gem Explorer",
+  "short_name": "SideQuest",
+  "description": "Discover hidden gems, plan offbeat routes, and connect with verified solo travel companions.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#EFE9D7",
+  "theme_color": "#343723",
+  "lang": "en",
+  "categories": ["travel", "lifestyle"],
+  "icons": [
+    {
+      "src": "/sidequest-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/sidequest-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Hidden Gems",
+      "short_name": "Gems",
+      "description": "Browse nearby hidden gems",
+      "url": "/?screen=gems",
+      "icons": [{ "src": "/sidequest-mark.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "AI Route Planner",
+      "short_name": "Routes",
+      "description": "Plan your offbeat expedition",
+      "url": "/?screen=routes",
+      "icons": [{ "src": "/sidequest-mark.svg", "sizes": "any", "type": "image/svg+xml" }]
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

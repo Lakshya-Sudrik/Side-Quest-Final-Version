@@ -1,0 +1,157 @@
+{
+  "all_gates_pass": false,
+  "gates": {
+    "gem_quality_india": {
+      "r2_min": {
+        "value": 0.2582,
+        "op": ">=",
+        "threshold": 0.15,
+        "pass": true
+      },
+      "r2_gap_max": {
+        "value": 0.0399,
+        "op": "<=",
+        "threshold": 0.05,
+        "pass": true
+      },
+      "shuffle_r2_max": {
+        "value": -0.0001,
+        "op": "<=",
+        "threshold": 0.01,
+        "pass": true
+      },
+      "beats_baseline": {
+        "value": 0.259,
+        "op": ">=",
+        "threshold": 0.1,
+        "pass": true
+      },
+      "all_pass": true
+    },
+    "hidden_gem": {
+      "task": "hidden_gem",
+      "gate_results": {
+        "r2_min": {
+          "value": 0.413055,
+          "required": ">= 0.12",
+          "pass": true
+        },
+        "r2_baseline_margin": {
+          "value": 0.413055,
+          "required": ">= 0.1",
+          "pass": true
+        },
+        "r2_gap_max": {
+          "value": 0.033226,
+          "required": "<= 0.05",
+          "pass": true
+        },
+        "shuffle_r2_max": {
+          "value": -0.031879,
+          "required": "<= 0.01",
+          "pass": true
+        },
+        "leakage_assert": {
+          "value": true,
+          "required": "label inputs must not appear in X",
+          "pass": true
+        }
+      },
+      "all_pass": true,
+      "label_provenance": "independent",
+      "shuffle_test": {
+        "metric": "r2 (held-out, true labels)",
+        "shuffled_value": -0.031879,
+        "in_sample_memorisation_r2": 0.122252,
+        "baseline": 0.0,
+        "collapsed": true
+      }
+    },
+    "hidden_gem_class": {
+      "task": "hidden_gem_class",
+      "gate_results": {
+        "macro_f1_min": {
+          "value": 0.708432,
+          "required": ">= 0.6",
+          "pass": true
+        },
+        "minority_recall_min": {
+          "value": 0.677149,
+          "required": ">= 0.35",
+          "pass": true
+        },
+        "pr_auc_min_over_prevalence": {
+          "value": 2.698,
+          "required": ">= 1.8",
+          "pass": true
+        },
+        "balanced_accuracy_min": {
+          "value": 0.742152,
+          "required": ">= 0.6",
+          "pass": true
+        },
+        "leakage_assert": {
+          "value": true,
+          "required": "label inputs must not appear in X",
+          "pass": true
+        },
+        "label_shuffle_macro_f1_max_over_baseline": {
+          "value": 0.453281,
+          "required": "<= 0.9395 (must collapse on shuffled labels)",
+          "pass": true
+        }
+      },
+      "all_pass": true,
+      "label_provenance": "independent",
+      "shuffle_test": {
+        "metric": "macro_f1",
+        "shuffled_value": 0.453281,
+        "baseline": 0.8,
+        "collapsed": true
+      }
+    },
+    "collaboration_auth": {
+      "task": "collaboration_auth",
+      "gate_results": {
+        "macro_f1_min": {
+          "value": 0.58703,
+          "required": ">= 0.6",
+          "pass": false
+        },
+        "minority_recall_min": {
+          "value": 0.227679,
+          "required": ">= 0.35",
+          "pass": false
+        },
+        "pr_auc_min_over_prevalence": {
+          "value": 8.332,
+          "required": ">= 6.0",
+          "pass": true
+        },
+        "balanced_accuracy_min": {
+          "value": 0.580783,
+          "required": ">= 0.6",
+          "pass": false
+        },
+        "leakage_assert": {
+          "value": true,
+          "required": "label inputs must not appear in X",
+          "pass": true
+        },
+        "label_shuffle_macro_f1_max_over_baseline": {
+          "value": 0.473888,
+          "required": "<= 1.0511 (must collapse on shuffled labels)",
+          "pass": true
+        }
+      },
+      "all_pass": false,
+      "label_provenance": "weak_distilled",
+      "shuffle_test": {
+        "metric": "macro_f1",
+        "shuffled_value": 0.473888,
+        "baseline": 0.9007352941176471,
+        "collapsed": true
+      }
+    }
+  }
+}

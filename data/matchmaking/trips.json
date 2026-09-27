@@ -1,0 +1,182 @@
+[
+  {
+    "trip_id": "trip_001",
+    "user_id": "user_001",
+    "place_id": "sw_10010",
+    "place_name": "Popular North Indian Restaurant",
+    "start_date": "2026-10-15",
+    "end_date": "2026-10-17",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_002",
+    "user_id": "user_002",
+    "place_id": "sw_10010",
+    "place_name": "Popular North Indian Restaurant",
+    "start_date": "2026-10-16",
+    "end_date": "2026-10-18",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_003",
+    "user_id": "user_003",
+    "place_id": "sw_10010",
+    "place_name": "Popular North Indian Restaurant",
+    "start_date": "2026-10-15",
+    "end_date": "2026-10-19",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_004",
+    "user_id": "user_004",
+    "place_id": "sw_10010",
+    "place_name": "Popular North Indian Restaurant",
+    "start_date": "2026-10-17",
+    "end_date": "2026-10-19",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_005",
+    "user_id": "user_005",
+    "place_id": "sw_10010",
+    "place_name": "Popular North Indian Restaurant",
+    "start_date": "2026-10-14",
+    "end_date": "2026-10-16",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_006",
+    "user_id": "user_006",
+    "place_id": "sw_100151",
+    "place_name": "Popular South Indian Restaurant",
+    "start_date": "2026-10-20",
+    "end_date": "2026-10-22",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_007",
+    "user_id": "user_007",
+    "place_id": "sw_100151",
+    "place_name": "Popular South Indian Restaurant",
+    "start_date": "2026-10-21",
+    "end_date": "2026-10-23",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_008",
+    "user_id": "user_008",
+    "place_id": "sw_100151",
+    "place_name": "Popular South Indian Restaurant",
+    "start_date": "2026-10-19",
+    "end_date": "2026-10-21",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_009",
+    "user_id": "user_009",
+    "place_id": "sw_101678",
+    "place_name": "Popular Cafe",
+    "start_date": "2026-10-10",
+    "end_date": "2026-10-12",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_010",
+    "user_id": "user_010",
+    "place_id": "sw_101678",
+    "place_name": "Popular Cafe",
+    "start_date": "2026-10-11",
+    "end_date": "2026-10-13",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_011",
+    "user_id": "user_011",
+    "place_id": "sw_100111",
+    "place_name": "Popular Dessert Place",
+    "start_date": "2026-10-25",
+    "end_date": "2026-10-27",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_012",
+    "user_id": "user_012",
+    "place_id": "sw_100111",
+    "place_name": "Popular Dessert Place",
+    "start_date": "2026-10-26",
+    "end_date": "2026-10-28",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_013",
+    "user_id": "user_013",
+    "place_id": "sw_100111",
+    "place_name": "Popular Dessert Place",
+    "start_date": "2026-10-25",
+    "end_date": "2026-10-27",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_014",
+    "user_id": "user_014",
+    "place_id": "sw_100111",
+    "place_name": "Popular Dessert Place",
+    "start_date": "2026-10-24",
+    "end_date": "2026-10-26",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_015",
+    "user_id": "user_015",
+    "place_id": "sw_100111",
+    "place_name": "Popular Dessert Place",
+    "start_date": "2026-10-26",
+    "end_date": "2026-10-28",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_016",
+    "user_id": "user_001",
+    "place_id": "sw_100275",
+    "place_name": "Obscure Chinese Place",
+    "start_date": "2026-11-01",
+    "end_date": "2026-11-03",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_017",
+    "user_id": "user_003",
+    "place_id": "sw_100275",
+    "place_name": "Obscure Chinese Place",
+    "start_date": "2026-11-02",
+    "end_date": "2026-11-04",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_018",
+    "user_id": "user_005",
+    "place_id": "sw_100347",
+    "place_name": "Obscure South Indian Place",
+    "start_date": "2026-11-05",
+    "end_date": "2026-11-07",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_019",
+    "user_id": "user_007",
+    "place_id": "sw_100347",
+    "place_name": "Obscure South Indian Place",
+    "start_date": "2026-11-06",
+    "end_date": "2026-11-08",
+    "solo_flag": true
+  },
+  {
+    "trip_id": "trip_020",
+    "user_id": "user_009",
+    "place_id": "sw_115692",
+    "place_name": "Very Obscure Cafe",
+    "start_date": "2026-11-10",
+    "end_date": "2026-11-12",
+    "solo_flag": true
+  }
+]

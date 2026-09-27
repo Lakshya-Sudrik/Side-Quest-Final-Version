@@ -1,0 +1,95 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Model artifacts (large files - use Git LFS if needed)
+models/*.pkl
+# honest-pipeline models are small and must ship with the code, otherwise the
+# app silently falls back to whatever old pickle is lying around
+!models/hidden_gem_model.pkl
+!models/hidden_gem_class_model.pkl
+!models/collaboration_auth_model.pkl
+models/legacy/
+
+# Data files (large)
+data/*.csv
+data/*.json
+!data/matchmaking/
+data/processed/
+data/raw/
+data/scraped/
+data/cache/
+data/yelp/
+
+# Reports (generated)
+reports/*.json
+!reports/gates.json
+!reports/metrics.json
+!reports/model_summary.txt
+reports/*.txt
+!reports/model_summary.txt
+reports/us_legacy/
+
+# Temporary files
+*.bak
+*.new
+*.tmp
+*_diag*.py
+_sweep*.py
+_fix*.py
+
+# Environment
+.env
+*.key
+# safety index reference data (small, needed at serving time)
+!data/safety/
+
+# JS deps
+node_modules/
+
+# large raw review dump (upload separately)
+data/attractions/Review_db.csv
+data/geo/IN.txt
+data/geo/IN.zip
+data/geo/readme.txt
+data/attractions/_reviews_cache.pkl
+data/chroma_db/
+data/app/

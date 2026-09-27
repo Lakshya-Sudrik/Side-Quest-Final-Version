@@ -1,0 +1,35 @@
+
+==============================================================
+SIDEQUEST MODEL SUMMARY (honest labels, criteria.json gates)
+==============================================================
+Generated: 2026-09-26 18:50:33
+
+GEM_QUALITY_INDIA  [xgboost]  label=independent (own rating is the label, never a feature)
+  R2=0.2582 (margin over baseline 0.2590)  RMSE=25.7740  MAE=21.5740
+  target: mean=47.76 std=29.93 n=19125
+  GATES [PASS]: r2_min=0.2582(>= 0.15), r2_gap_max=0.0399(<= 0.05), shuffle_r2_max=-0.0001(<= 0.01), beats_baseline=0.259(>= 0.1)
+
+ATTRACTIONS_GEM  [xgboost + tfidf ridge (out-of-fold)]  label=independent (held-out half of reviews)
+  R2=0.5010 (margin over baseline 0.0569)  RMSE=n/a  MAE=0.1590
+  target: mean=n/a std=n/a n=2164
+  GATES [PASS]: r2_beats_baseline=True(true), r2_gap_max_0.05=True(true), shuffle_r2_max_0.01=True(true), gem_f1_beats_baseline=True(true)
+
+HIDDEN_GEM  [xgboost]  label=independent
+  R2=0.4131 (margin over baseline 0.4131)  RMSE=22.1763  MAE=18.1497
+  target: mean=51.04 std=28.95 n=2266
+  GATES [PASS]: r2_min=0.413055(>= 0.12), r2_baseline_margin=0.413055(>= 0.1), r2_gap_max=0.033226(<= 0.05), shuffle_r2_max=-0.031879(<= 0.01), leakage_assert=True(label inputs must not appear in X)
+
+HIDDEN_GEM_CLASS  [xgboost]  label=independent
+  accuracy=0.7798 (majority baseline 0.7895)  macro_f1=0.7084  balanced_acc=0.7422
+  minority(class 1): recall=0.6771 f1=0.5642   pr_auc=0.5679 (lift x2.70)
+  confusion matrix ['0', '1']: [[1444, 345], [154, 323]]
+  GATES [PASS]: macro_f1_min=0.708432(>= 0.6), minority_recall_min=0.677149(>= 0.35), pr_auc_min_over_prevalence=2.698(>= 1.8), balanced_accuracy_min=0.742152(>= 0.6), leakage_assert=True(label inputs must not appear in X), label_shuffle_macro_f1_max_over_baseline=0.453281(<= 0.9395 (must collapse on shuffled labels))
+
+COLLABORATION_AUTH  [ebm]  label=weak_distilled
+  accuracy=0.8641 (majority baseline 0.9011)  macro_f1=0.5870  balanced_acc=0.5808
+  minority(class 0): recall=0.2277 f1=0.2488   pr_auc=0.8236 (lift x8.33)
+  confusion matrix ['0', '1']: [[51, 173], [135, 1907]]
+  GATES [FAIL]: macro_f1_min=0.58703(>= 0.6), minority_recall_min=0.227679(>= 0.35), pr_auc_min_over_prevalence=8.332(>= 6.0), balanced_accuracy_min=0.580783(>= 0.6), leakage_assert=True(label inputs must not appear in X), label_shuffle_macro_f1_max_over_baseline=0.473888(<= 1.0511 (must collapse on shuffled labels))
+
+OVERALL: SOME GATES FAILED
+==============================================================

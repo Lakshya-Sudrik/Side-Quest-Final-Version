@@ -1,0 +1,167 @@
+[
+  {
+    "user_id": "user_001",
+    "name": "Arjun",
+    "handle": "arjun_travels",
+    "age": 28,
+    "age_range": "25-30",
+    "gender": "male",
+    "interests": ["trekking", "photography", "local food", "history", "sunrise views"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_002",
+    "name": "Priya",
+    "handle": "priya_explores",
+    "age": 26,
+    "age_range": "25-30",
+    "gender": "female",
+    "interests": ["photography", "street food", "temples", "culture", "sunrise views"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_003",
+    "name": "Rohit",
+    "handle": "rohit_wanderer",
+    "age": 32,
+    "age_range": "30-35",
+    "gender": "male",
+    "interests": ["trekking", "camping", "wildlife", "stargazing", "bird watching"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_004",
+    "name": "Sneha",
+    "handle": "sneha_journeys",
+    "age": 29,
+    "age_range": "25-30",
+    "gender": "female",
+    "interests": ["local food", "markets", "art", "music", "sunset views"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_005",
+    "name": "Vikram",
+    "handle": "vikram_trails",
+    "age": 31,
+    "age_range": "30-35",
+    "gender": "male",
+    "interests": ["trekking", "photography", "history", "architecture", "camping"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_006",
+    "name": "Ananya",
+    "handle": "ananya_roams",
+    "age": 27,
+    "age_range": "25-30",
+    "gender": "female",
+    "interests": ["beaches", "water sports", "photography", "local food", "yoga"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_007",
+    "name": "Karan",
+    "handle": "karan_hikes",
+    "age": 30,
+    "age_range": "25-30",
+    "gender": "male",
+    "interests": ["trekking", "mountains", "photography", "camping", "adventure"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_008",
+    "name": "Meera",
+    "handle": "meera_diaries",
+    "age": 25,
+    "age_range": "25-30",
+    "gender": "female",
+    "interests": ["history", "museums", "local food", "walking tours", "photography"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_009",
+    "name": "Aditya",
+    "handle": "aditya_nomad",
+    "age": 33,
+    "age_range": "30-35",
+    "gender": "male",
+    "interests": ["trekking", "wildlife", "photography", "stargazing", "meditation"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_010",
+    "name": "Ishita",
+    "handle": "ishita_travels",
+    "age": 28,
+    "age_range": "25-30",
+    "gender": "female",
+    "interests": ["local food", "markets", "culture", "photography", "street art"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_011",
+    "name": "Rahul",
+    "handle": "rahul_backpacker",
+    "age": 29,
+    "age_range": "25-30",
+    "gender": "male",
+    "interests": ["trekking", "camping", "budget travel", "local food", "music"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_012",
+    "name": "Kavya",
+    "handle": "kavya_explorer",
+    "age": 26,
+    "age_range": "25-30",
+    "gender": "female",
+    "interests": ["temples", "spirituality", "yoga", "photography", "nature"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_013",
+    "name": "Sameer",
+    "handle": "sameer_walks",
+    "age": 34,
+    "age_range": "30-35",
+    "gender": "male",
+    "interests": ["history", "architecture", "walking tours", "photography", "museums"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_014",
+    "name": "Nisha",
+    "handle": "nisha_voyage",
+    "age": 27,
+    "age_range": "25-30",
+    "gender": "female",
+    "interests": ["beaches", "sunset views", "photography", "water sports", "local food"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  },
+  {
+    "user_id": "user_015",
+    "name": "Arnav",
+    "handle": "arnav_treks",
+    "age": 31,
+    "age_range": "30-35",
+    "gender": "male",
+    "interests": ["trekking", "mountains", "camping", "photography", "adventure"],
+    "solo_flag": true,
+    "shareable_fields": ["name", "handle", "age_range", "gender"]
+  }
+]

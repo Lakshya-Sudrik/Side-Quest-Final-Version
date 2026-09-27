@@ -1,0 +1,7 @@
+{
+  "name": "SideQuest",
+  "description": "Offbeat expedition discovery, secret hidden gems, and verified solo travel companion matching.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@theme {
+  --color-primary: #343723;
+  --color-on-primary: #efe9d7;
+  --color-primary-container: #51533c;
+  --color-on-primary-container: #efe9d7;
+  --color-primary-fixed: #898861;
+  --color-primary-fixed-dim: #a9a88c;
+  --color-on-primary-fixed: #efe9d7;
+  --color-on-primary-fixed-variant: #51533c;
+
+  --color-secondary: #7d2826;
+  --color-on-secondary: #efe9d7;
+  --color-secondary-container: #9b453e;
+  --color-on-secondary-container: #343723;
+  --color-secondary-fixed: #e5c9be;
+  --color-secondary-fixed-dim: #c98d7f;
+  --color-on-secondary-fixed: #343723;
+  --color-on-secondary-fixed-variant: #62201f;
+
+  --color-tertiary: #898861;
+  --color-on-tertiary: #efe9d7;
+  --color-tertiary-container: #737452;
+  --color-on-tertiary-container: #efe9d7;
+  --color-tertiary-fixed: #e8e4d3;
+  --color-tertiary-fixed-dim: #d5d1b9;
+  --color-on-tertiary-fixed: #343723;
+  --color-on-tertiary-fixed-variant: #6e704d;
+
+  --color-surface: #efe9d7;
+  --color-surface-dim: #d8d3be;
+  --color-surface-bright: #efe9d7;
+  --color-surface-container-lowest: #efe9d7;
+  --color-surface-container-low: #f5f2e7;
+  --color-surface-container: #e8e4d4;
+  --color-surface-container-high: #dedac8;
+  --color-surface-container-highest: #d8d3be;
+  --color-surface-variant: #d8d3be;
+
+  --color-on-surface: #343723;
+  --color-on-surface-variant: #595a4a;
+  --color-inverse-surface: #343723;
+  --color-inverse-on-surface: #f5f2e7;
+
+  --color-outline: #898861;
+  --color-outline-variant: #b7b29c;
+
+  --color-error: #7d2826;
+  --color-on-error: #efe9d7;
+  --color-error-container: #e5c9be;
+  --color-on-error-container: #62201f;
+
+  --font-headline: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Outfit", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  overscroll-behavior-y: none;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  accent-color: #7d2826;
+}
+
+h1, h2, h3, h4, h5, h6, .font-headline {
+  font-family: var(--font-headline);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+/* GSAP text hover highlight styles */
+.gsap-text-highlight {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.gsap-text-highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 0%;
+  height: 35%;
+  background-color: rgba(137, 136, 97, 0.3);
+  border-radius: 4px;
+  z-index: -1;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gsap-text-highlight:hover::after {
+  width: 100%;
+}
+
+/* Keep interface copy comfortably readable on the desktop and small screens. */
+[class~="text-[8px]"] { font-size: 10px; }
+[class~="text-[9px]"] { font-size: 11px; }
+[class~="text-[10px]"] { font-size: 12px; }
+[class~="text-[11px]"] { font-size: 13px; }
+[class~="text-xs"] { font-size: 13px; }
+[class~="text-sm"] { font-size: 15px; }
+@media (min-width: 640px) {
+  [class~="sm:text-xs"] { font-size: 13px; }
+  [class~="sm:text-sm"] { font-size: 15px; }
+  [class~="sm:text-[10px]"] { font-size: 12px; }
+  [class~="sm:text-[11px]"] { font-size: 13px; }
+}
+@media (min-width: 768px) {
+  [class~="md:text-xs"] { font-size: 13px; }
+  [class~="md:text-sm"] { font-size: 15px; }
+  [class~="md:text-[10px]"] { font-size: 12px; }
+  [class~="md:text-[11px]"] { font-size: 13px; }
+}
+@media (min-width: 1024px) {
+  [class~="lg:text-xs"] { font-size: 13px; }
+  [class~="lg:text-sm"] { font-size: 15px; }
+}
+
